@@ -1,0 +1,124 @@
+@font-face {
+    font-family: 'Mont-Heavy';
+    src: url('../public/fonts/Mont-HeavyDEMO.otf') format('opentype')
+}
+
+.main{
+    display: flex;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    width: 100vw;
+    font-family: 'Mont-Heavy';
+    display: flex;
+}
+
+
+.imgContainer{
+    background-image: url('../public/background.png');
+    background-size: cover;
+    width: 40vw;
+    height: 100vh;
+}
+
+.loginContainer{
+    width: 60vw;
+    height: 100vh;
+    background-color: #151D26;
+    align-items: center;
+    justify-content: center;
+}
+
+.icon1{
+    width: 40vw;
+    height: 40vh;
+    color: white;
+    margin-top: 30vh;
+}
+
+.icon2{
+    color: white;
+}
+
+.h1{
+    font-size: 3rem;
+    margin-top: -3vh;
+}
+
+.h3{
+    font-size: 2.5rem;
+    margin-top: 5vh;
+    margin-bottom: 2vh;
+}
+.h1, .h3{
+    color: white;
+}
+
+.h6{
+    color: white;
+    font-size: 1.75rem;
+    margin-top: -2vh;
+    
+}
+.content{
+    margin-left: 2vw;
+    margin-top: 10vh;
+}
+
+.signup{
+    background-color: #368FE8 ;
+    color: white;
+    border: none;
+    font-size: 1.5rem;
+    font-weight: bold;
+    width: 12vw;
+    height: 5vh;
+    border-radius: 5vw;
+    cursor: pointer;
+
+}
+
+.signin{
+    background-color: transparent;
+    color: #368FE8;
+    border: none;
+    font-size: 1.5rem;
+    font-weight: bold;
+    width: 12vw;
+    height: 5vh;
+    border-radius: 5vw;
+    margin-top: -6vh;
+    border: 0.1vh solid white;
+    cursor: pointer;
+}
+
+.modal{
+    margin: 0;
+    padding: 0;
+    background-color: #151D26;
+    width: 35vw;
+    height: 40vh;
+}
+
+.input{
+    background-color:#151D26;
+    height: 5vh;
+    margin-bottom: 1vh;
+    color: white;
+}
+
+.icon3{
+    height: 8vh;
+    width: 8vw;
+    margin-bottom: 6vh;
+    color: white;
+}
+
+.btninput{
+    background-color: white;
+    border: none;
+    width: 11vw;
+    height: 4vh;
+    border-radius: 5vw;
+    cursor: pointer;
+}
