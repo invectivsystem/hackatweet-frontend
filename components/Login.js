@@ -1,19 +1,61 @@
 import styles from '../styles/Login.module.css';
+import { useDispatch, useRouter } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTwitter } from '@fortawesome/free-brands-svg-icons'
 import { useState } from 'react';
-import SignUp from './SignUp'; 
 import ReactModal from 'react-modal';
 
 
 function Login() {
-
-
- 
-   
+  const dispatch = useDispatch();
+  const router = useRouter();
+  const[signUpFirstname, setSignupFirstname] = useState('');
+  const [signUpUsername, setSignUpUsername] = useState('');
+	const [signUpPassword, setSignUpPassword] = useState('');
+	const [signInUsername, setSignInUsername] = useState('');
+	const [signInPassword, setSignInPassword] = useState('');
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [modal2IsOpen, setModal2IsOpen] = useState(false);
 
+
+  const handleRegister = () => {
+		fetch('http://localhost:3000/users/signup', {
+			method: 'POST',
+			headers: { 'Content-Type': 'application/json' },
+			body: JSON.stringify({ firstname: signUpFirstname, username: signUpUsername, password: signUpPassword }),
+		}).then(response => response.json())
+			.then(data => {
+				if (data.result) {
+					dispatch(login({ username: signUpUsername, token: data.token }));
+					setSignupFirstname('');
+          setSignUpUsername('');
+					setSignUpPassword('');
+
+				}
+			});
+	};
+   
+  const handleConnection = () => {
+
+		fetch('http://localhost:3000/users/signin', {
+			method: 'POST',
+			headers: { 'Content-Type': 'application/json' },
+			body: JSON.stringify({ username: signInUsername, password: signInPassword }),
+		}).then(response => response.json())
+			.then(data => {
+				if (data.result) {
+					dispatch(login({ username: signInUsername, token: data.token }));
+					setSignInUsername('');
+					setSignInPassword('');
+				}
+			});
+	};
+
+
+  if (user.token) {
+    router.push('/accueil')
+  }
+ 
   const openModal = () => {
     setModalIsOpen(true);
   };

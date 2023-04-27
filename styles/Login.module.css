@@ -107,6 +107,15 @@
     color: white;
 }
 
+.input:focus {
+    background-color: transparent;
+}
+
+.input:active {
+    background-color: transparent;
+}
+
+
 .icon3{
     height: 8vh;
     width: 8vw;
