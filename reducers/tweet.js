@@ -11,8 +11,11 @@ export const tweetSlice = createSlice({
     sendTweetSubmit: (state, action) => {
       state.value.push(action.payload);
     },
+    deleteTweetSubmit: (state) => {
+      state.value = [];
+    },
   },
 });
 
-export const { sendTweetSubmit } = tweetSlice.actions;
+export const { sendTweetSubmit, deleteTweetSubmit } = tweetSlice.actions;
 export default tweetSlice.reducer;
