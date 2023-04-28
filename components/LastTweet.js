@@ -1,42 +1,32 @@
 import { useDispatch, useSelector } from "react-redux";
-// import fonctions reducers
+import { useState, useEffect } from "react";
+import { sendTweetSubmit } from "../reducers/tweet";
 import Image from "next/image";
 import styles from "../styles/LastTweet.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeartbeat } from "@fortawesome/free-solid-svg-icons";
+import CardTweet from "./CardTweet";
 
 function LastTweet() {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user.value);
 
-  return (
-    <div className={styles.lastTweets}>
-      <div className={styles.infoUser}>
-        <Image
-          className={styles.imageOeuf}
-          src="/oeuf.jpeg"
-          alt="logo"
-          height={40}
-          width={40}
-        />
-        <h4 className={styles.prenom}>{props.user.firstname}</h4>
-        <p className={styles.pseudo}>@{props.user.username}</p>
-        <span className={styles.point}> . </span>
-        <span className={styles.date}>{props.timeStamp}</span>
-      </div>
-      <div>
-        {/* <p>Welcome to <span className={styles.blue}>{props.hashtag}</span> guys</p> */}
-        <p>{props.tweetContent}</p>
-      </div>
-      <div>
-        <span className={styles.heartIcone}>{heart}</span>
-        <span className={styles.counter}>{props.numLike}</span>
-        <span className={styles.trashIcone} onClick={() => deleteTweetSubmit()}>
-          {trash}
-        </span>
-      </div>
-    </div>
-  );
+  const [tweetsData, setTweetsData] = useState([]);
+  useEffect(() => {
+    fetch("http://localhost:3000/tweets")
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data.tweets);
+        setTweetsData(data.tweets);
+      });
+  }, []);
+
+  const lastTweets = tweetsData.map((tweets, i) => {
+    // const isLiked = likedMovies.some((movie) => movie === movies.title);
+    return <CardTweet key={i} {...data} />;
+  });
+
+  return <>{lastTweets}</>;
 }
 
 export default LastTweet;
