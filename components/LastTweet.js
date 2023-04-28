@@ -13,20 +13,24 @@ function LastTweet() {
 
   const [tweetsData, setTweetsData] = useState([]);
   useEffect(() => {
-    fetch("http://localhost:3000/tweets")
+    fetch(`http://localhost:3000/tweets/${user.token}`)
       .then((response) => response.json())
       .then((data) => {
-        console.log(data.tweets);
-        setTweetsData(data.tweets);
+        console.log("console log fetch", data);
+        setTweetsData(data.tweet);
       });
   }, []);
 
-  const lastTweets = tweetsData.map((tweets, i) => {
-    // const isLiked = likedMovies.some((movie) => movie === movies.title);
-    return <CardTweet key={i} {...data} />;
-  });
+  console.log("check", tweetsData)
+const lastTweets = tweetsData.map((tweets, i) => {
+ const isLiked = likedMovies.some((movie) => movie === movies.title);
+return <CardTweet key={i} {...data} />;
+  }); 
 
-  return <>{lastTweets}</>;
+  return <>{ 
+    
+    
+    }</>;
 }
 
 export default LastTweet;

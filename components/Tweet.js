@@ -9,7 +9,7 @@ function Post() {
   console.log(connectedUser);
 
   const sendTweetSubmit = () => {
-    fetch("http://localhost:3000/tweets", {
+    fetch(`http://localhost:3000/tweets`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
