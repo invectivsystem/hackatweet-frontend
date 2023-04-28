@@ -1,0 +1,41 @@
+.tweet{
+    display: flex;
+    flex-direction: column;
+}
+
+.enterTweet{
+    display: flex;
+    justify-content: end;
+    margin-top: 2vh;
+    margin-right: 2vw;
+}
+
+.btnTweet{
+    background-color: #368FE8 ;
+    width: 8vw;
+    height: 4vh;
+    border-radius: 4vw;
+    color: white;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+}
+
+.counter{
+    margin-top: 1.3vh;
+    margin-right: 1vw;
+}
+
+.input{
+    border: none;
+    background-color: transparent;
+    border-bottom: 1px solid gray;
+    color: gray;
+    font-size: 2rem;
+    width: 35vw;
+    margin-left: 10vw;
+}
+
+.input:focus{
+   outline: none;
+}

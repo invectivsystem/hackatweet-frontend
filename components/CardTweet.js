@@ -1,6 +1,5 @@
 import styles from "../styles/CardTweet.module.css";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHeartbeat } from "@fortawesome/free-solid-svg-icons";
+
 import Image from "next/image";
 
 function CardTweet(props) {

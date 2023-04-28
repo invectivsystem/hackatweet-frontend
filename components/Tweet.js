@@ -1,6 +1,5 @@
 import React from "react";
 import styles from "../styles/Tweet.module.css";
-import user from "../reducers/user";
 import { useDispatch, useSelector } from "react-redux";
 import { useState, useEffect } from "react";
 
@@ -11,19 +10,21 @@ function Post() {
   console.log(connectedUser);
 
   const sendTweetSubmit = () => {
-    fetch("http://localhost:3000/tweets", {
+    fetch(`http://localhost:3000/tweets`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        tweetContent: enterTweetContent,
-        userId: connectedUser._id,
+        content: enterTweetContent,
+        token: connectedUser.token,
       }),
     })
       .then((response) => response.json())
       .then((data) => {
         console.log(data);
-        if (data.result) {
-          props.addTweet(true);
+        if (data.token) {
+          dispatch(
+            sendTweetSubmit({ tweet: enterTweetContent, token: user.token })
+          );
           setEnterTweetContent("");
         }
       });
