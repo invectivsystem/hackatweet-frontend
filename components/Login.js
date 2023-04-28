@@ -1,12 +1,16 @@
 import styles from '../styles/Login.module.css';
-import { useDispatch, useRouter } from 'react-redux';
+import { useDispatch, useSelector} from 'react-redux';
+import { useRouter } from 'next/router'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTwitter } from '@fortawesome/free-brands-svg-icons'
 import { useState } from 'react';
 import ReactModal from 'react-modal';
+import { login } from '../reducers/user';
+
 
 
 function Login() {
+
   const dispatch = useDispatch();
   const router = useRouter();
   const[signUpFirstname, setSignupFirstname] = useState('');
@@ -16,7 +20,11 @@ function Login() {
 	const [signInPassword, setSignInPassword] = useState('');
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [modal2IsOpen, setModal2IsOpen] = useState(false);
+  const user = useSelector((state) => state.user.value);
 
+  console.log("username", signUpUsername)
+  console.log("firstname", signUpFirstname)
+  console.log("password", signUpPassword)
 
   const handleRegister = () => {
 		fetch('http://localhost:3000/users/signup', {
@@ -25,7 +33,9 @@ function Login() {
 			body: JSON.stringify({ firstname: signUpFirstname, username: signUpUsername, password: signUpPassword }),
 		}).then(response => response.json())
 			.then(data => {
+        console.log("checkData", data)
 				if (data.result) {
+
 					dispatch(login({ username: signUpUsername, token: data.token }));
 					setSignupFirstname('');
           setSignUpUsername('');
@@ -50,6 +60,8 @@ function Login() {
 				}
 			});
 	};
+
+
 
 
   if (user.token) {
@@ -144,16 +156,16 @@ function Login() {
             <FontAwesomeIcon icon={faTwitter} className={styles.icon3} rotation={180}  />        
 
       <div>
-        <input className={styles.input} type="text" placeholder="Firstname" />
+        <input className={styles.input} type="text" value={signUpFirstname} placeholder="Firstname" onChange={(e) => setSignupFirstname(e.target.value)}/>
       </div>
       <div>
-        <input className={styles.input} type="text" placeholder="Username" />
+        <input className={styles.input} type="text" value={signUpUsername} placeholder="Username" onChange={(e) => setSignUpUsername(e.target.value)}/>
       </div>
       <div>
-        <input className={styles.input} type="password" placeholder="Password" />
+        <input className={styles.input} type="password" value={signUpPassword} placeholder="Password" onChange={(e) => setSignUpPassword(e.target.value)} />
       </div>
       <div>
-        <button className={styles.btninput}>Signup</button>
+        <button className={styles.btninput} onClick={() => {handleRegister()}}>Signup</button>
       </div>
       </ReactModal>
       <ReactModal
@@ -194,13 +206,13 @@ function Login() {
             <FontAwesomeIcon icon={faTwitter} className={styles.icon3} rotation={180}  />        
 
       <div>
-        <input className={styles.input} type="text" placeholder="Username" />
+        <input className={styles.input} type="text" placeholder="Username" value={signInUsername} onChange={(e) => setSignInUsername(e.target.value)} />
       </div>
       <div>
-        <input className={styles.input} type="password" placeholder="Password" />
+        <input className={styles.input} type="password" placeholder="Password" value={signInPassword} onChange={(e) => setSignInPassword(e.target.value)}/>
       </div>
       <div>
-        <button className={styles.btninput}>Signin</button>
+        <button className={styles.btninput} onClick={() => {handleConnection()}}>Signin</button>
       </div>
       </ReactModal>
     
