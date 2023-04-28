@@ -6,6 +6,7 @@ import { useState, useEffect } from "react";
 
 function Post() {
   const [enterTweetContent, setEnterTweetContent] = useState("");
+  const dispatch = useDispatch();
   let connectedUser = useSelector((state) => state.user.value);
   console.log(connectedUser);
 

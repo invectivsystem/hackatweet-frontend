@@ -13,10 +13,11 @@ function LastTweet() {
 
   const [tweetsData, setTweetsData] = useState([]);
   useEffect(() => {
-    fetch("http://localhost:3000/tweets")
+    fetch(`http://localhost:3000/tweets/${user.token}/`)
       .then((response) => response.json())
       .then((data) => {
         console.log(data.tweets);
+        dispatch(sendTweetSubmit(props));
         setTweetsData(data.tweets);
       });
   }, []);
